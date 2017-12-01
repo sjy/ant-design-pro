@@ -30,7 +30,7 @@ export default class Monitor extends PureComponent {
       <div>
         <Row gutter={24}>
           <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
-            <Card title="活动实时交易情况" bordered={false}>
+            <Card title="'黑五'活动实时交易情况" bordered={false}>
               <Row>
                 <Col md={6} sm={12} xs={24}>
                   <NumberInfo
@@ -69,32 +69,6 @@ export default class Monitor extends PureComponent {
           <Col xl={6} lg={24} md={24} sm={24} xs={24}>
             <Card title="活动情况预测" style={{ marginBottom: 24 }} bordered={false}>
               <ActiveChart />
-            </Card>
-            <Card
-              title="券核效率"
-              style={{ marginBottom: 24 }}
-              bodyStyle={{ textAlign: 'center' }}
-              bordered={false}
-            >
-              <Gauge
-                format={(val) => {
-                  switch (parseInt(val, 10)) {
-                    case 20:
-                      return '差';
-                    case 40:
-                      return '中';
-                    case 60:
-                      return '良';
-                    case 80:
-                      return '优';
-                    default:
-                      return '';
-                  }
-                }}
-                title="跳出率"
-                height={180}
-                percent={87}
-              />
             </Card>
           </Col>
         </Row>

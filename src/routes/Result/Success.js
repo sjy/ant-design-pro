@@ -8,7 +8,7 @@ const { Step } = Steps;
 const desc1 = (
   <div style={{ fontSize: 12, color: 'rgba(0, 0, 0, 0.45)', position: 'relative', left: 42 }}>
     <div style={{ margin: '8px 0 4px' }}>
-      曲丽丽<Icon style={{ marginLeft: 8 }} type="dingding-o" />
+      X老板<Icon style={{ marginLeft: 8 }} type="dingding-o" />
     </div>
     <div>2016-12-12 12:32</div>
   </div>
@@ -35,7 +35,7 @@ const extra = (
       </Col>
       <Col xs={24} sm={12} md={12} lg={12} xl={6}>
         <span style={{ color: 'rgba(0, 0, 0, 0.85)' }}>负责人：</span>
-        曲丽丽
+        X老板
       </Col>
       <Col xs={24} sm={24} md={24} lg={24} xl={12}>
         <span style={{ color: 'rgba(0, 0, 0, 0.85)' }}>生效时间：</span>

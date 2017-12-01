@@ -9,6 +9,30 @@ export async function queryActivities() {
   return request('/api/activities');
 }
 
+export async function queryBathroom(params) {
+  return request(`/api/bathroom?${stringify(params)}`);
+}
+
+export async function removeBathroom(params) {
+  return request('/api/bathroom', {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'delete',
+    },
+  });
+}
+
+export async function addBathroom (params) {
+  return request('/api/bathroom', {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
 export async function queryRule(params) {
   return request(`/api/rule?${stringify(params)}`);
 }

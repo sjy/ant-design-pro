@@ -44,12 +44,12 @@ class StandardTable extends PureComponent {
         const { selectedRowKeys, totalCallNo } = this.state;
         const { data: { list, pagination }, loading } = this.props;
 
-        const status = ['运行中', ' 维护中', '未开启', '关闭'];
+        const status = ['使用中', ' 维护中', '空闲', '关闭'];
 
         const columns = [
             {
                 title: '编号',
-                dataIndex: 'no',
+                dataIndex: 'closetID',
             },
             {
                 title: '描述',

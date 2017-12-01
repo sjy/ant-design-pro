@@ -7,6 +7,7 @@ export default {
         levels: [],
         devices: [],
         bathrooms: [],
+        selectedLevel: null,
         loading: true,
     },
 
@@ -67,19 +68,33 @@ export default {
         save(state, action) {
             let bathrooms = [];
             let devices = [];
-            if (action.payload.levelId) {
-                bathrooms = action.payload.find(l => l.id === levelId).toilets;
+            let selectedLevel = null;
+            if (action.levelId) {
+                selectedLevel = action.payload.find(l => l.id === action.levelId);
+                bathrooms = selectedLevel.toilets;
                 devices = bathrooms
                     .map(t =>
-                        t.male.closets
+                        t.position.male.closets
                             .map(c => ({
                                 ...c,
-                                ...{ desc: t.name, levelId: levelId, key: t.id, type: 'male' },
+                                ...{
+                                    type: 'male',
+                                    description: `${t.name}/男`,
+                                    levelId: action.levelId,
+                                    key: c.closetID,
+                                    status: c.available ? 2 : 0,
+                                },
                             }))
                             .concat(
-                                t.female.closets.map(c => ({
+                                t.position.female.closets.map(c => ({
                                     ...c,
-                                    ...{ desc: t.name, levelId: levelId, key: t.id, type: 'female' },
+                                    ...{
+                                        type: 'female',
+                                        description: `${t.name}/女`,
+                                        levelId: action.levelId,
+                                        key: c.closetID,
+                                        status: c.available ? 2 : 0,
+                                    },
                                 }))
                             )
                     )
@@ -90,6 +105,7 @@ export default {
                 levels: action.payload,
                 devices,
                 bathrooms,
+                selectedLevel,
             };
         },
         changeLoading(state, action) {

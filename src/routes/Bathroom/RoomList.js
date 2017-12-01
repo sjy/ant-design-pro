@@ -224,7 +224,7 @@ export default class RoomList extends PureComponent {
     }
 
     render() {
-        const { bathroom: { loading, bathrooms, devices }, match } = this.props;
+        const { bathroom: { loading, bathrooms, devices, selectedLevel }, match } = this.props;
         const { selectedRows, modalVisible, addInputValue } = this.state;
         const list = devices;
 
@@ -235,7 +235,7 @@ export default class RoomList extends PureComponent {
         );
 
         return (
-            <PageHeaderLayout title="XX楼卫生间">
+            <PageHeaderLayout title={`${selectedLevel && selectedLevel.name || ''}卫生间`}>
                 <Card bordered={false}>
                     <div className={styles.tableList}>
                         <div className={styles.tableListForm}>{this.renderSimpleForm()}</div>

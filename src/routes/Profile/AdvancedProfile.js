@@ -50,7 +50,7 @@ const extra = (
 
 const description = (
   <DescriptionList className={styles.headerList} size="small" col="2">
-    <Description term="创建人">曲丽丽</Description>
+    <Description term="创建人">X老板</Description>
     <Description term="订购产品">XX 服务</Description>
     <Description term="创建时间">2017-07-07</Description>
     <Description term="关联单据"><a href="">12421</a></Description>
@@ -70,7 +70,7 @@ const tabList = [{
 const desc1 = (
   <div className={classNames(styles.textSecondary, styles.stepDescription)}>
     <div>
-      曲丽丽
+      X老板
       <Icon type="dingding-o" style={{ marginLeft: 8 }} />
     </div>
     <div>2016-12-12 12:32</div>
@@ -232,7 +232,7 @@ export default class AdvancedProfile extends Component {
             <Description term="会员卡号">32943898021309809423</Description>
             <Description term="身份证">3321944288191034921</Description>
             <Description term="联系方式">18112345678</Description>
-            <Description term="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</Description>
+            <Description term="联系地址">X老板 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</Description>
           </DescriptionList>
           <DescriptionList style={{ marginBottom: 24 }} title="信息组">
             <Description term="某某数据">725</Description>

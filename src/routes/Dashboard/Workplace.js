@@ -142,8 +142,8 @@ export default class Workplace extends PureComponent {
           <Avatar size="large" src="https://gw.alipayobjects.com/zos/rmsportal/lctvVCLfRpYCkYxAsiVQ.png" />
         </div>
         <div className={styles.content}>
-          <div className={styles.contentTitle}>早安，曲丽丽，祝你开心每一天！</div>
-          <div>交互专家 | 蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED</div>
+          <div className={styles.contentTitle}>早安，X老板，祝你开心每一天！</div>
+          <div> COO | 汇金国际-商户管理部 </div>
         </div>
       </div>
     );

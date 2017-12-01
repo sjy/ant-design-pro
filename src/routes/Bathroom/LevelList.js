@@ -12,7 +12,7 @@ export default class LevelList extends PureComponent {
     componentDidMount() {
         this.props.dispatch({
             type: 'bathroom/fetch',
-            payload: { count: 8 },
+            payload: {},
         });
     }
 
@@ -21,7 +21,6 @@ export default class LevelList extends PureComponent {
     };
 
     handleTabLevel = id => {
-        // TODO
         this.props.history.push(`/bathroom/${id}`);
     };
 
@@ -47,10 +46,10 @@ export default class LevelList extends PureComponent {
                                     >
                                         <Card.Meta
                                             // avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                                            title={<a href="#">{item.title}</a>}
+                                            title={<a href="#">{item.name}</a>}
                                             description={
                                                 <Ellipsis className={styles.item} lines={3}>
-                                                    {`${item.description}, 共${item.bathrooms.length}个厕所`}
+                                                    {`${item.desc}, 共${item.toilets.length}个厕所`}
                                                 </Ellipsis>
                                             }
                                         />

@@ -40,7 +40,7 @@ export default class RoomList extends PureComponent {
         formValues: {},
     };
 
-    componentDidMount() {
+    fetchData() {
         const { dispatch, match } = this.props;
         dispatch({
             type: 'bathroom/fetch',
@@ -48,6 +48,29 @@ export default class RoomList extends PureComponent {
                 level: match.params.level,
             },
         });
+    }
+
+    startPoll() {
+        this.timeout = setTimeout(() => this.fetchData(), 5000);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeout);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.bathroom !== nextProps.bathroom) {
+            clearTimeout(this.timeout);
+
+            // Optionally do something with data
+            if (!nextProps.bathroom.loading) {
+                this.startPoll();
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.fetchData();
     }
 
     handleStandardTableChange = (pagination, filtersArg, sorter) => {
@@ -201,8 +224,9 @@ export default class RoomList extends PureComponent {
     }
 
     render() {
-        const { bathroom: { loading, bathrooms } } = this.props;
+        const { bathroom: { loading, bathrooms, devices }, match } = this.props;
         const { selectedRows, modalVisible, addInputValue } = this.state;
+        const list = devices;
 
         const menu = (
             <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -233,7 +257,7 @@ export default class RoomList extends PureComponent {
                         <StandardTable
                             selectedRows={selectedRows}
                             loading={loading}
-                            data={{ list: bathrooms, pagination: null }}
+                            data={{ list, pagination: null }}
                             onSelectRow={this.handleSelectRows}
                             onChange={this.handleStandardTableChange}
                         />

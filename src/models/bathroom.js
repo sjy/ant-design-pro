@@ -1,20 +1,12 @@
-import { queryBathroom, removeBathroom, addBathroom} from '../services/api';
+import { queryBathroom, removeBathroom, addBathroom } from '../services/api';
 
 export default {
     namespace: 'bathroom',
 
     state: {
-        levels: [
-            {
-                level: 1,
-                id: '1',
-                name: '',
-                title: '一楼',
-                description: '厕所很多',
-                bathrooms: [{}],
-            },
-        ],
-        bathrooms: [{}],
+        levels: [],
+        devices: [],
+        bathrooms: [],
         loading: true,
     },
 
@@ -28,6 +20,7 @@ export default {
             yield put({
                 type: 'save',
                 payload: response,
+                levelId: payload.level,
             });
             yield put({
                 type: 'changeLoading',
@@ -72,10 +65,31 @@ export default {
 
     reducers: {
         save(state, action) {
+            let bathrooms = [];
+            let devices = [];
+            if (action.payload.levelId) {
+                bathrooms = action.payload.find(l => l.id === levelId).toilets;
+                devices = bathrooms
+                    .map(t =>
+                        t.male.closets
+                            .map(c => ({
+                                ...c,
+                                ...{ desc: t.name, levelId: levelId, key: t.id, type: 'male' },
+                            }))
+                            .concat(
+                                t.female.closets.map(c => ({
+                                    ...c,
+                                    ...{ desc: t.name, levelId: levelId, key: t.id, type: 'female' },
+                                }))
+                            )
+                    )
+                    .reduce((t1, t2) => t1.concat(t2), []);
+            }
             return {
                 ...state,
-                levels: action.payload.levels,
-                bathrooms: action.payload.bathrooms,
+                levels: action.payload,
+                devices,
+                bathrooms,
             };
         },
         changeLoading(state, action) {
